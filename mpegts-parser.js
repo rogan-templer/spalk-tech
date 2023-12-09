@@ -90,3 +90,9 @@ try {
   // Exit with code 1 for unhandled errors
   process.exitCode = 1;
 }
+
+module.exports = {
+  parseMpegTSPacket,
+  processByteStream,
+  processFile,
+};
