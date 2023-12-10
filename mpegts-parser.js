@@ -3,7 +3,7 @@ const path = require("path");
 
 // Function to parse the MPEG-TS packet
 // this is responsible for the processing of a given packet.
-function parseMpegTSPacket(buffer, offset) {
+const parseMpegTSPacket = (buffer, offset) => {
   // First check initial sync byte data, if not 0x47 then throw error
   if (buffer.readUInt8(offset) !== 0x47) {
     throw new Error(`No sync byte present in packet at offset ${offset}`);
@@ -17,7 +17,7 @@ function parseMpegTSPacket(buffer, offset) {
 
 // Function to process the byte stream
 // this will call on the function above to process the byte stream in 188-byte packets (the length of each packet in the stream)
-function processByteStream(byteStream) {
+const processByteStream = (byteStream) => {
   let offset = 0;
   let hasErrors = false;
   const pidSet = new Set();
@@ -47,7 +47,7 @@ function processByteStream(byteStream) {
 }
 
 // Function to read and process a file - to handle the test files provided.
-function processFile(filepath) {
+const processFile = (filepath) => {
   try {
     // Resolve the file path to handle relative paths
     const resolvedPath = path.resolve(filepath);
